@@ -3,7 +3,7 @@
 {% block title %}New Entry{% end %}
 
 {% block body %}
-<div class="welcome">Hello, {{ user.Nickname }}. <a href="/backstage">Back</a> to backstage, or <a href="/signout">Sign out?</a></div>
+<div class="welcome">Hello, {{ current_user.Nickname }}. <a href="/backstage">Back</a> to backstage, or <a href="/signout">Sign out?</a></div>
 <form method="POST" action="">
     {% raw xsrf_form_html() %}
     <div class="form_line">

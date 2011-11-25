@@ -72,4 +72,4 @@ class BackstageHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
         entries = self.db.query("SELECT * FROM Entry")
-        self.render('backstage.html', user = self.current_user, entries = entries)
+        self.render('backstage.html', entries = entries)

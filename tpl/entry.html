@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ entry.Title }}{% end %}
+
+{% block body %}
+<div class="title"><h1>{{ entry.Title }}</h1></div>
+<div class="content" id="entry-{{ entry.id }}-content" >
+    {% raw content %}
+</div>
+{% if current_user %}
+<div class="admin">
+    <a href="/entry/{{ entry.id }}/edit">Edit</a> | 
+    <a href="/entry/{{ entry.id }}/remove">Remove</a>
+</div>
+{% end %}
+{% end %}

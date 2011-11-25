@@ -11,5 +11,4 @@ class IndexHandler(BaseHandler):
         except ProgrammingError:
             self.redirect("/install")
             return
-        print entries
         self.render('index.html', entries = entries)
