@@ -7,7 +7,12 @@
 <ul class="entry-list">
     {% for entry in entries %}
     <li id="entry-{{entry.id}}">
-        <a href="/entry/{{entry.id}}">{{ entry.Title }}</a>
+        <div class="title">
+            <h1><a href="/entry/{{entry.id}}">{{ entry.Title }}</a></h1>
+        </div>
+        <div class="content">
+            {% raw entry.Markdown %}
+        </div>
     </li>
     {% end %}
 </ul>

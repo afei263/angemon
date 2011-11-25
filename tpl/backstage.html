@@ -3,7 +3,8 @@
 {% block title %}Backstage{% end %}
 
 {% block body %}
-<div class="weblcome">Hello, {{ current_user.Nickname }}. <a href="/compose">Write</a> a New Entry, or <a href="/signout">Sign out?</a></div>
+<div class="backstage">
+    <div class="nav">Hello {{ current_user.Nickname }}. <a href="/compose">Compose</a> | <a href="/signout">Sign out</a></div>
 {% if entries %}
 <div class="entry_list">
     <ul>
@@ -15,4 +16,5 @@
     </ul>
 </div>
 {% end %}
+</div>
 {% end %}

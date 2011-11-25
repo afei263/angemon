@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from MySQLdb import ProgrammingError
+from markdown import markdown
 
 from base import BaseHandler
 
@@ -11,4 +12,6 @@ class IndexHandler(BaseHandler):
         except ProgrammingError:
             self.redirect("/install")
             return
+        for entry in entries:
+            entry.Markdown = markdown(entry.Content)
         self.render('index.html', entries = entries)

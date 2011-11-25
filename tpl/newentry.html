@@ -3,7 +3,8 @@
 {% block title %}New Entry{% end %}
 
 {% block body %}
-<div class="welcome">Hello, {{ current_user.Nickname }}. <a href="/backstage">Back</a> to backstage, or <a href="/signout">Sign out?</a></div>
+<div class="backstage">
+<div class="nav">Hello {{ current_user.Nickname }}. <a href="/backstage">Backstage</a> | <a href="/signout">Sign out</a></div>
 {% if error != 0 %}
 <div class="error_msg">
 {% if error == 1 %}
@@ -14,14 +15,15 @@
 <form method="POST" action="">
     {% raw xsrf_form_html() %}
     <div class="form_line">
-        <input type="TEXT" name="title" placeholder="Title" {% if title %}value="{{ title }}"{% end %}/>
+        <input type="TEXT" name="title" id="compose_title" placeholder="Title" {% if title %}value="{{ title }}"{% end %}/>
     </div>
     <div class="form_textarea">
         <textarea name="content">
         </textarea>
     </div>
     <div class="form_line">
-        <input type="SUBMIT" value="New Entry" />
+        <input type="SUBMIT" value="New Entry" class="button" />
     </div>
 </form>
+</div>
 {% end %}

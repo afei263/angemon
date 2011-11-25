@@ -47,44 +47,44 @@ h6 {
     font-size: 1.0em;
     color: #000000;
 }
-p, pre, blockquote, table, ul, ol, dl {
+.content p, .content pre, .content blockquote, .content table, .content ul, .content ol, .content dl {
     margin-top: 1em; 
     margin-bottom: 1em;
 }
-ul ul, ul ol, ol ol, ol ul {
+.content ul ul, .content ul ol, .content ol ol, .content ol ul {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
-ol, ul {
+.content ol, .content ul {
     list-style-position: inside;
 }
-li {
+.content li {
     margin: 0.3em auto;
 }
-ul {
+.content ul {
     margin-left: 2em;
     padding-left: 0.5em;
 }
-dt {
+.content dt {
     font-weight: bold;
 }
-img {
+.content img {
     border: none;
 }
-pre {
+.content pre {
     border-left: 1px solid #3E606F;
     margin-left: 2em; 
     padding-left: 0.5em;
 }
-blockquote {
+.content blockquote {
     padding: 0.4em;
     background-color: #e5dcc3;
 }
-th, td {
+.content th, .content td {
     border: 1px solid #ccc;
     padding: 0.3em;
 }
-th {
+.content th {
     background-color: #f0f0f0;
 }
 hr {
@@ -92,7 +92,7 @@ hr {
     border-top: 1px solid #ccc; 
     width: 100%;
 }
-del {
+.content del {
     text-decoration: line-through;
     color: #777777;
 }
@@ -103,7 +103,7 @@ a {
 a:hover {
     text-decoration: underline;
 }
-code {
+.content code {
     background-color: #ede7d6;
     border: 1px solid #b7af9c;
     padding: 0 .2em!important;
@@ -112,7 +112,7 @@ pre, code {
     font: 12px 'Bitstream Vera Sans Mono','Courier',monospace;
 }
 
-.header {
+#Header {
     width: 700px;
     margin: 0 auto;
 }
@@ -133,7 +133,20 @@ pre, code {
     text-decoration: none;
 }
 
-.content {
+ul.entry-list li{
+    list-style: none;
+    margin: 0;
+}
+
+ul.entry-list li .content {
+    margin-left: 0.5em;
+}
+
+.entry-list .title a{
+    color: #2E0927;
+}
+
+.wrapper {
     width: 700px;
     margin: 0 auto;
 }
@@ -141,4 +154,51 @@ pre, code {
 .author {
     font-size: 13px;
     color: #AAA;
+}
+
+.backstage {
+    margin-top: 40px;
+}
+
+.backstage .nav {
+    text-align: right;
+}
+
+.form_line {
+    margin: 10px 0;
+    line-height: 30px;
+}
+
+.form_line input {
+    outline: none;
+    border: none;
+    height: 30px;
+    font-size: 26px;
+    background-color: #FFF5D9;
+    width: 100%;
+}
+
+.form_textarea textarea {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: #FFF5D9;
+    height: 500px;
+}
+
+.form_textarea ::-webkit-scrollbar {
+    width: 0;
+}
+
+.form_line .button{
+    height: 20px;
+    font-size: 17px;
+}
+
+.form_line .button input:hover {
+    background: #FFF;
+}
+
+#compose_title {
+    border-bottom: 1px dashed #BA674E;
 }
