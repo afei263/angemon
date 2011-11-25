@@ -1,0 +1,204 @@
+/*
+ *
+ * Angemon Blog Style
+ *
+ */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: #45372B;
+    background-color: #FFF5D9;
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", STHeiti !important;
+    padding: 1em 2em 1em 2em;
+    font-size: 100%;
+    line-height: 130%;
+    border-top: #F5EBCF 5px solid;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5em; 
+    margin-bottom: 0.5em;
+}
+h1 {
+    font-size: 2.0em;
+    color: #2E0927;
+}
+h2 {
+    font-size: 1.6em; 
+    color: #D90000;
+}
+h3 {
+    font-size: 1.3em; 
+    color: #FF8C00;
+}
+h4 {
+    font-size: 1.2em;
+    color: #04756F;
+}
+h5 {
+    font-size: 1.1em; 
+    color: #FF2D00;
+}
+h6 {
+    font-size: 1.0em;
+    color: #000000;
+}
+.content p, .content pre, .content blockquote, .content table, .content ul, .content ol, .content dl {
+    margin-top: 1em; 
+    margin-bottom: 1em;
+}
+.content ul ul, .content ul ol, .content ol ol, .content ol ul {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.content ol, .content ul {
+    list-style-position: inside;
+}
+.content li {
+    margin: 0.3em auto;
+}
+.content ul {
+    margin-left: 2em;
+    padding-left: 0.5em;
+}
+.content dt {
+    font-weight: bold;
+}
+.content img {
+    border: none;
+}
+.content pre {
+    border-left: 1px solid #3E606F;
+    margin-left: 2em; 
+    padding-left: 0.5em;
+}
+.content blockquote {
+    padding: 0.4em;
+    background-color: #e5dcc3;
+}
+.content th, .content td {
+    border: 1px solid #ccc;
+    padding: 0.3em;
+}
+.content th {
+    background-color: #f0f0f0;
+}
+hr {
+    border: none; 
+    border-top: 1px solid #ccc; 
+    width: 100%;
+}
+.content del {
+    text-decoration: line-through;
+    color: #777777;
+}
+a {
+    text-decoration: none;
+    color: #7D6D94;
+}
+a:hover {
+    text-decoration: underline;
+}
+.content code {
+    background-color: #ede7d6;
+    border: 1px solid #b7af9c;
+    padding: 0 .2em!important;
+}
+pre, code {
+    font: 12px 'Bitstream Vera Sans Mono','Courier',monospace;
+}
+
+#Header {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.blogtitle {
+    padding-top: 30px;
+    text-align: center;
+    font-variant:small-caps;
+    font-family: 'OFL Sorts Mill Goudy TT';
+    font-size: 42px;
+}
+
+.blogtitle a{
+    color: #CC1C04;
+}
+
+.blogtitle a:hover {
+    text-decoration: none;
+}
+
+ul.entry-list li{
+    list-style: none;
+    margin: 0;
+}
+
+ul.entry-list li .content {
+    margin-left: 0.5em;
+}
+
+.entry-list .title a{
+    color: #2E0927;
+}
+
+.wrapper {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.author {
+    font-size: 13px;
+    color: #AAA;
+}
+
+.backstage {
+    margin-top: 40px;
+}
+
+.backstage .nav {
+    text-align: right;
+}
+
+.form_line {
+    margin: 10px 0;
+    line-height: 30px;
+}
+
+.form_line input {
+    outline: none;
+    border: none;
+    height: 30px;
+    font-size: 26px;
+    background-color: #FFF5D9;
+    width: 100%;
+}
+
+.form_textarea textarea {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: #FFF5D9;
+    height: 500px;
+}
+
+.form_textarea ::-webkit-scrollbar {
+    width: 0;
+}
+
+.form_line .button{
+    height: 20px;
+    font-size: 17px;
+}
+
+.form_line .button input:hover {
+    background: #FFF;
+}
+
+#compose_title {
+    border-bottom: 1px dashed #BA674E;
+}
