@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Backstage{% end %}
+
+{% block body %}
+<div class="weblcome">Hello, {{ user.Nickname }}. <a href="/entry/new">Write</a> New Entry.</div>
+{% if entries %}
+<div class="entry_list">
+    <ul>
+        {% for entry in entries %}
+        <li id="entry-{{ entry.id }}">
+            <a href="/entry/{{ entry.id }}/edit">{{ entry.Title }}</a>
+        </li>
+        {% end %}
+    </ul>
+</div>
+{% end %}
+{% end %}

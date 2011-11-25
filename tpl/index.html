@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% end %}
+
+{% block body %}
+{% if entries %}
+<ul class="entry-list">
+    {% for entry in entries %}
+    <li id="entry-{{entry.id}}">
+        <a href="/entry/{{entry.id}}">{{ entry.Title }}</a>
+    </li>
+    {% end %}
+</ul>
+{% else %}
+<div class="notice">
+    There are nothing now.
+</div>
+{% end %}
+{% end %}

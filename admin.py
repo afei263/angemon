@@ -8,7 +8,15 @@ from base import BaseHandler
 
 class InstallHandler(BaseHandler):
     def get(self):
+        self.db.execute("CREATE TABLE IF NOT EXISTS `User`( `id` int(11) NOT NULL auto_increment, \
+                        `Username` varchar(40), `Auth` varchar(40), \
+                        `Nickname` varchar(100), PRIMARY KEY (`id`)) CHARSET=utf8")
+        self.db.execute("CREATE TABLE IF NOT EXISTS `Entry`( `id` int(11) NOT NULL auto_increment, \
+                        `Title` varchar(512), `Content` MEDIUMTEXT, \
+                        `Author_id` int(11), `PublishTime` DATETIME, \
+                        PRIMARY KEY (`id`)) CHARSET=utf8")
         count = self.db.get("SELECT count(1) as count FROM User")
+        print count
         if count['count'] != 0:
             raise tornado.web.HTTPError(404)
         self.render('install.html', usr = None, error = 0)
@@ -32,9 +40,11 @@ class SigninHandler(BaseHandler):
         count = self.db.get("SELECT count(1) as count FROM User")
         if count['count'] == 0:
             self.redirect('/install')
+            return 0
         user = self.get_current_user()
         if user:
-            self.redirect('/')
+            self.redirect('/backstage')
+            return 0
         self.render('signin.html', usr = None, error = 0)
     def post(self):
         user = self.get_current_user()
@@ -52,3 +62,15 @@ class SigninHandler(BaseHandler):
             return
         self.set_secure_cookie('auth', auth)
         self.redirect('/')
+
+class SignoutHandler(BaseHandler):
+    def get(self):
+        self.clear_cookie('auth')
+        self.redirect('/')
+
+class BackstageHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self):
+        user = self.get_current_user()
+        entries = self.db.get("SELECT * FROM Entry")
+        self.render('backstage.html', user = user, entries = entries)

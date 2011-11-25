@@ -13,7 +13,9 @@ from tornado.options import options
 
 from main import IndexHandler
 from admin import SigninHandler
+from admin import SignoutHandler
 from admin import InstallHandler
+from admin import BackstageHandler
 from config import mysql_config
 
 define("mysql_host", default = mysql_config['mysql_host'])
@@ -26,7 +28,9 @@ class Application(tornado.web.Application):
         handlers = [
             (r'/', IndexHandler), 
             (r'/signin', SigninHandler), 
-            (r'/install', InstallHandler), 
+            (r'/signout', SignoutHandler),
+            (r'/install', InstallHandler),  
+            (r'/backstage', BackstageHandler), 
         ]
         settings = {
             'site_title' : u'Angemon', 
