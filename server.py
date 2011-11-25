@@ -12,6 +12,7 @@ from tornado.options import define
 from tornado.options import options
 
 from main import IndexHandler
+from admin import SigninHandler
 from config import mysql_config
 
 define("mysql_host", default = mysql_config['mysql_host'])
@@ -23,10 +24,11 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r'/', IndexHandler), 
+            (r'/signin', SigninHandler), 
         ]
         settings = {
             'site_title' : u'Angemon', 
-            'login_url' : '/login', 
+            'login_url' : '/signin', 
             'template_path' : os.path.join(os.path.dirname(__file__), 'tpl'), 
             'static_path' : os.path.join(os.path.dirname(__file__), "static"),
             'xsrf_cookies' : True, 

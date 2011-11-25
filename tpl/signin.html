@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Log in{% end %}
+
+{% block body %}
+<div class="signin_form">
+<form method="POST" action="">
+    {% raw xsrf_form_html() %}
+    <div class="form_line">
+        <label>用户名: </label>
+        <input type="text" name="usr" id="username" />
+    </div>
+    <div class="form_line">
+        <label>密码: </label>
+        <input type="password" name="pwd" id="password" />
+    </div>
+    <div class="form_line">
+        <input type="submit" value="Sign in" />
+    </div>
+</form>
+</div>
+{% end %}
