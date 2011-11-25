@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}删除确认{% end %}
+
+{% block body %}
+<form action="" method="POST">
+    {% raw xsrf_form_html() %}
+    <div class="notice">
+        <span>你确定要删除 <a href="/entry/{{ entry.id }}">{{ entry.Title }}</a> 么？</span>
+    </div>
+    <div class="form_line">
+        <input type="submit" value="删除" />
+    </div>
+</form>
+{% end %}

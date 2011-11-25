@@ -37,6 +37,7 @@ class EditEntryHandler(BaseHandler):
         if not entry:
             raise tornado.web.HTTPError(404)
         self.render("edit.html", entry = entry)
+    @tornado.web.authenticated
     def post(self, eid):
         entry = self.db.get("SELECT * FROM Entry WHERE id = %s", eid)
         if not entry:
@@ -46,3 +47,15 @@ class EditEntryHandler(BaseHandler):
         self.db.execute("UPDATE Entry SET Title = %s, Content = %s, PublishTime = UTC_TIMESTAMP() WHERE id = %s", \
                         title, content, eid)
         self.redirect("/entry/" + str(eid) + "/edit")
+
+class RemoveEntryHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self, eid):
+        entry = self.db.get("SELECT * FROM Entry WHERE id = %s", eid)
+        if not entry:
+            raise tornado.web.HTTPError(404)
+        self.render("remove.html", entry = entry)
+    @tornado.web.authenticated
+    def post(self, eid):
+        self.db.execute("DELETE FROM Entry WHERE id = %s", eid)
+        self.redirect("/")

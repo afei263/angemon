@@ -19,6 +19,7 @@ from admin import BackstageHandler
 from entry import ComposeHandler
 from entry import EntryHandler
 from entry import EditEntryHandler
+from entry import RemoveEntryHandler
 from config import mysql_config
 
 define("mysql_host", default = mysql_config['mysql_host'])
@@ -37,6 +38,7 @@ class Application(tornado.web.Application):
             (r'/compose', ComposeHandler),
             (r'/entry/([^/]+)', EntryHandler), 
             (r'/entry/([^/]+)/edit', EditEntryHandler), 
+            (r'/entry/([^/]+)/remove', RemoveEntryHandler), 
         ]
         settings = {
             'site_title' : u'Angemon', 
