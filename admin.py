@@ -71,5 +71,5 @@ class SignoutHandler(BaseHandler):
 class BackstageHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        entries = self.db.query("SELECT * FROM Entry")
+        entries = self.db.query("SELECT * FROM Entry ORDER BY PublishTime DESC")
         self.render('backstage.html', entries = entries)

@@ -31,4 +31,18 @@ class EntryHandler(BaseHandler):
         self.render("entry.html", entry = entry, content = markdown(entry.Content))
 
 class EditEntryHandler(BaseHandler):
-    pass
+    @tornado.web.authenticated
+    def get(self, eid):
+        entry = self.db.get("SELECT * FROM Entry WHERE id = %s", eid)
+        if not entry:
+            raise tornado.web.HTTPError(404)
+        self.render("edit.html", entry = entry)
+    def post(self, eid):
+        entry = self.db.get("SELECT * FROM Entry WHERE id = %s", eid)
+        if not entry:
+            raise tornado.web.HTTPError(404)
+        title = self.get_argument('title', default = "No Title")
+        content = self.get_argument('content', default = None)
+        self.db.execute("UPDATE Entry SET Title = %s, Content = %s, PublishTime = UTC_TIMESTAMP() WHERE id = %s", \
+                        title, content, eid)
+        self.redirect("/entry/" + str(eid) + "/edit")
