@@ -16,6 +16,7 @@ from admin import SigninHandler
 from admin import SignoutHandler
 from admin import InstallHandler
 from admin import BackstageHandler
+from entry import NewEntryHandler
 from config import mysql_config
 
 define("mysql_host", default = mysql_config['mysql_host'])
@@ -31,6 +32,7 @@ class Application(tornado.web.Application):
             (r'/signout', SignoutHandler),
             (r'/install', InstallHandler),  
             (r'/backstage', BackstageHandler), 
+            (r'/entry/new', NewEntryHandler), 
         ]
         settings = {
             'site_title' : u'Angemon', 

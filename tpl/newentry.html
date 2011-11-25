@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}New Entry{% end %}
+
+{% block body %}
+<form method="POST" action="/">
+    {% raw xsrf_form_html() %}
+    <div class="form_line">
+        <input type="TEXT" name="title" placeholder="Title" />
+    </div>
+    <div class="form_textarea">
+        <textarea name="content">
+        </textarea>
+    </div>
+    <div class="form_line">
+        <input type="SUBMIT" value="New Entry" />
+    </div>
+</form>
+{% end %}
