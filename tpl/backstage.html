@@ -3,7 +3,7 @@
 {% block title %}Backstage{% end %}
 
 {% block body %}
-<div class="weblcome">Hello, {{ user.Nickname }}. <a href="/entry/new">Write</a> New Entry.</div>
+<div class="weblcome">Hello, {{ user.Nickname }}. <a href="/compose">Write</a> a New Entry, or <a href="/signout">Sign out?</a></div>
 {% if entries %}
 <div class="entry_list">
     <ul>

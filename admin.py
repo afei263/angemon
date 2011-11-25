@@ -41,13 +41,13 @@ class SigninHandler(BaseHandler):
         if count['count'] == 0:
             self.redirect('/install')
             return 0
-        user = self.get_current_user()
+        user = self.current_user
         if user:
             self.redirect('/backstage')
             return 0
         self.render('signin.html', usr = None, error = 0)
     def post(self):
-        user = self.get_current_user()
+        user = self.current_user
         if user:
             self.redirect('/')
         usr = self.get_argument("usr", default = None)
@@ -71,6 +71,5 @@ class SignoutHandler(BaseHandler):
 class BackstageHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        user = self.get_current_user()
-        entries = self.db.get("SELECT * FROM Entry")
-        self.render('backstage.html', user = user, entries = entries)
+        entries = self.db.query("SELECT * FROM Entry")
+        self.render('backstage.html', user = self.current_user, entries = entries)
