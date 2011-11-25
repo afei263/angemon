@@ -1,0 +1,144 @@
+/*
+ *
+ * Angemon Blog Style
+ *
+ */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: #45372B;
+    background-color: #FFF5D9;
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", STHeiti !important;
+    padding: 1em 2em 1em 2em;
+    font-size: 100%;
+    line-height: 130%;
+    border-top: #F5EBCF 5px solid;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5em; 
+    margin-bottom: 0.5em;
+}
+h1 {
+    font-size: 2.0em;
+    color: #2E0927;
+}
+h2 {
+    font-size: 1.6em; 
+    color: #D90000;
+}
+h3 {
+    font-size: 1.3em; 
+    color: #FF8C00;
+}
+h4 {
+    font-size: 1.2em;
+    color: #04756F;
+}
+h5 {
+    font-size: 1.1em; 
+    color: #FF2D00;
+}
+h6 {
+    font-size: 1.0em;
+    color: #000000;
+}
+p, pre, blockquote, table, ul, ol, dl {
+    margin-top: 1em; 
+    margin-bottom: 1em;
+}
+ul ul, ul ol, ol ol, ol ul {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+ol, ul {
+    list-style-position: inside;
+}
+li {
+    margin: 0.3em auto;
+}
+ul {
+    margin-left: 2em;
+    padding-left: 0.5em;
+}
+dt {
+    font-weight: bold;
+}
+img {
+    border: none;
+}
+pre {
+    border-left: 1px solid #3E606F;
+    margin-left: 2em; 
+    padding-left: 0.5em;
+}
+blockquote {
+    padding: 0.4em;
+    background-color: #e5dcc3;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.3em;
+}
+th {
+    background-color: #f0f0f0;
+}
+hr {
+    border: none; 
+    border-top: 1px solid #ccc; 
+    width: 100%;
+}
+del {
+    text-decoration: line-through;
+    color: #777777;
+}
+a {
+    text-decoration: none;
+    color: #7D6D94;
+}
+a:hover {
+    text-decoration: underline;
+}
+code {
+    background-color: #ede7d6;
+    border: 1px solid #b7af9c;
+    padding: 0 .2em!important;
+}
+pre, code {
+    font: 12px 'Bitstream Vera Sans Mono','Courier',monospace;
+}
+
+.header {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.blogtitle {
+    padding-top: 30px;
+    text-align: center;
+    font-variant:small-caps;
+    font-family: 'OFL Sorts Mill Goudy TT';
+    font-size: 42px;
+}
+
+.blogtitle a{
+    color: #CC1C04;
+}
+
+.blogtitle a:hover {
+    text-decoration: none;
+}
+
+.content {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.author {
+    font-size: 13px;
+    color: #AAA;
+}

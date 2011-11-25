@@ -3,10 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{{ escape(handler.settings["site_title"]) }} › {% block title %} /dev/null{% end %}</title>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=OFL+Sorts+Mill+Goudy+TT" media="screen">
     <link rel="stylesheet" href="{{ static_url("style.css") }}" type="text/css"/>
     {% block head %}{% end %}
 </head>
 <body>
+    <div id="Header">
+        <div class="blogtitle"><a href="/">Zeray Rice</a></div>
+    </div>
     <div class="content">
         {% block body %}{% end %}
     </div>
