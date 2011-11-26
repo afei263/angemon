@@ -20,6 +20,7 @@ from entry import ComposeHandler
 from entry import EntryHandler
 from entry import EditEntryHandler
 from entry import RemoveEntryHandler
+from entry import FeedHandler
 from config import mysql_config
 
 define("mysql_host", default = mysql_config['mysql_host'])
@@ -39,6 +40,7 @@ class Application(tornado.web.Application):
             (r'/entry/([^/]+)', EntryHandler), 
             (r'/entry/([^/]+)/edit', EditEntryHandler), 
             (r'/entry/([^/]+)/remove', RemoveEntryHandler), 
+            (r'/feed', FeedHandler), 
         ]
         settings = {
             'site_title' : u'Angemon', 

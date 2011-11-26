@@ -59,3 +59,11 @@ class RemoveEntryHandler(BaseHandler):
     def post(self, eid):
         self.db.execute("DELETE FROM Entry WHERE id = %s", eid)
         self.redirect("/")
+
+class FeedHandler(BaseHandler):
+    def get(self):
+        entries = self.db.query("SELECT * FROM Entry ORDER BY PublishTime DESC LIMIT 10")
+        self.set_header("Content-Type", "application/atom+xml")
+        for entry in entries:
+            entry.Markdown = markdown(entry.Content)
+        self.render("feed.xml", entries = entries)
