@@ -28,7 +28,8 @@ class EntryHandler(BaseHandler):
         entry = self.db.get("SELECT * FROM Entry WHERE id = %s", eid)
         if not entry:
             raise tornado.web.HTTPError(404)
-        self.render("entry.html", entry = entry, content = markdown(entry.Content))
+        author = self.db.get("SELECT * FROM User WHERE id = %s", entry.Author_id)
+        self.render("entry.html", entry = entry, content = markdown(entry.Content), author = author)
 
 class EditEntryHandler(BaseHandler):
     @tornado.web.authenticated
