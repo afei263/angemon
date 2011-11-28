@@ -12,9 +12,6 @@ from tornado.options import define
 from tornado.options import options
 
 from db import ConnectDB
-from models import Site
-from models import Entry
-
 from base import BaseHandler
 from main import IndexHandler
 from admin import SigninHandler

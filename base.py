@@ -2,6 +2,8 @@
 
 import tornado.web
 
+from models import User
+
 class BaseHandler(tornado.web.RequestHandler):
     @property
     def db(self):
@@ -13,4 +15,7 @@ class BaseHandler(tornado.web.RequestHandler):
         auth = self.get_secure_cookie("auth")
         if not auth:
             return None
-        return self.db.get("SELECT * FROM User WHERE Auth = %s", auth)
+        query = self.session.query(User).filter_by(Auth = auth)
+        if query.count() == 0:
+            return None
+        return query.one()

@@ -7,11 +7,13 @@ import tornado.web
 from db import ConnectDB
 from base import BaseHandler
 from models import Site
+from models import User
+from models import Entry
 
 class InstallHandler(BaseHandler):
     def get(self):
-        count = self.db.get("SELECT count(1) as count FROM User")
-        if count['count'] != 0:
+        site = self.session.query(Site)
+        if site.count() != 0:
             raise tornado.web.HTTPError(404)
         self.render('install.html', usr = None, error = 0)
     def post(self):
@@ -25,24 +27,24 @@ class InstallHandler(BaseHandler):
         if len(usr) > 15 or len(pwd) > 15:
             self.render('install.html', usr = usr, error = 3)
         auth = hashlib.sha1(str(usr) + str(pwd) + "angemon").hexdigest()
-        self.db.execute("INSERT INTO User(Username, Auth, Nickname) VALUES (%s, %s, %s)", \
-                        usr, auth, nickname)
+        user = User()
+        user.Username = usr
+        user.Auth = auth
+        user.Nickname = nickname
+        self.session.add(user)
+        site = Site()
+        self.session.add(site)
+        self.session.commit()
         self.redirect('/signin')
 
 class SigninHandler(BaseHandler):
     def get(self):
-        count = self.db.get("SELECT count(1) as count FROM User")
-        if count['count'] == 0:
-            self.redirect('/install')
-            return 0
-        user = self.current_user
-        if user:
+        if self.current_user:
             self.redirect('/backstage')
             return 0
         self.render('signin.html', usr = None, error = 0)
     def post(self):
-        user = self.current_user
-        if user:
+        if self.current_user:
             self.redirect('/')
         usr = self.get_argument("usr", default = None)
         pwd = self.get_argument("pwd", default = None)
@@ -50,8 +52,8 @@ class SigninHandler(BaseHandler):
             self.render('signin.html', usr = usr, error = 1)
             return
         auth = hashlib.sha1(str(usr) + str(pwd) + "angemon").hexdigest()
-        query = self.db.get("SELECT * FROM User WHERE `Username` = %s AND `Auth` = %s", usr, auth)
-        if not query:
+        query = self.session.query(User).filter_by(Auth = auth)
+        if query.count() == 0:
             self.render('signin.html', usr = usr, error = 2)
             return
         self.set_secure_cookie('auth', auth)
@@ -65,5 +67,5 @@ class SignoutHandler(BaseHandler):
 class BackstageHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        entries = self.db.query("SELECT * FROM Entry ORDER BY PublishTime DESC")
+        entries = self.session.query(Entry).all()
         self.render('backstage.html', entries = entries)
