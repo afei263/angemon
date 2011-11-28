@@ -4,19 +4,13 @@ import hashlib
 
 import tornado.web
 
+from db import ConnectDB
 from base import BaseHandler
+from models import Site
 
 class InstallHandler(BaseHandler):
     def get(self):
-        self.db.execute("CREATE TABLE IF NOT EXISTS `User`( `id` int(11) NOT NULL auto_increment, \
-                        `Username` varchar(40), `Auth` varchar(40), \
-                        `Nickname` varchar(100), PRIMARY KEY (`id`)) CHARSET=utf8")
-        self.db.execute("CREATE TABLE IF NOT EXISTS `Entry`( `id` int(11) NOT NULL auto_increment, \
-                        `Title` varchar(512), `Content` MEDIUMTEXT, \
-                        `Author_id` int(11), `PublishTime` DATETIME, \
-                        PRIMARY KEY (`id`)) CHARSET=utf8")
         count = self.db.get("SELECT count(1) as count FROM User")
-        print count
         if count['count'] != 0:
             raise tornado.web.HTTPError(404)
         self.render('install.html', usr = None, error = 0)

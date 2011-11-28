@@ -11,6 +11,11 @@ import tornado.httpserver
 from tornado.options import define
 from tornado.options import options
 
+from db import ConnectDB
+from models import Site
+from models import Entry
+
+from base import BaseHandler
 from main import IndexHandler
 from admin import SigninHandler
 from admin import SignoutHandler
@@ -22,11 +27,6 @@ from entry import EditEntryHandler
 from entry import RemoveEntryHandler
 from entry import FeedHandler
 from config import mysql_config
-
-define("mysql_host", default = mysql_config['mysql_host'])
-define("mysql_database", default = mysql_config['mysql_database'])
-define("mysql_user", default = mysql_config['mysql_user'])
-define("mysql_password", default = mysql_config['mysql_password'])
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -51,9 +51,7 @@ class Application(tornado.web.Application):
             'cookie_secret' : '3295bfab668c4ad48dad43f890402905',
         }
         tornado.web.Application.__init__(self, handlers, **settings)
-        self.db = tornado.database.Connection(
-                  host=options.mysql_host, database=options.mysql_database,
-                  user=options.mysql_user, password=options.mysql_password)
+        self.session = ConnectDB()
 
 if __name__ == '__main__':
     http_server = tornado.httpserver.HTTPServer(Application())
