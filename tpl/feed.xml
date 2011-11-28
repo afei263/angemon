@@ -19,7 +19,7 @@
       <updated>{{ entry.PublishTime.strftime(date_format) }}</updated>
       <published>{{ entry.PublishTime.strftime(date_format) }}</published>
       <content type="xhtml" xml:base="http://{{ request.host }}/">
-        <div xmlns="http://www.w3.org/1999/xhtml">{{ entry.Content }}</div>
+        <div xmlns="http://www.w3.org/1999/xhtml">{% raw entry.Markdown %}</div>
       </content>
     </entry>
   {% end %}
