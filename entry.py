@@ -37,7 +37,7 @@ class EntryHandler(BaseHandler):
         entry = self.session.query(Entry).get(eid)
         if not entry:
             raise tornado.web.HTTPError(404)
-        self.render("entry.html", entry = entry, content = markdown(entry.Content))
+        self.render("entry.html", entry = entry)
 
 class EditEntryHandler(BaseHandler):
     @tornado.web.authenticated
