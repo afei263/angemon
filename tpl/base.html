@@ -5,12 +5,12 @@
     <title>{{ escape(handler.settings["site_title"]) }} › {% block title %} /dev/null{% end %}</title>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=OFL+Sorts+Mill+Goudy+TT" media="screen">
     <link rel="stylesheet" href="{{ static_url("style.css") }}" type="text/css"/>
-    <link rel="alternate" type="application/rss+xml" href="http://{{ request.host }}/feed" title="{{ escape(handler.settings["site_title"]) }} RSS Feed" />
+    <link rel="alternate" type="application/rss+xml" {% if handler.settings["feed_url"] %}href="{{ escape(handler.settings["feed_url"]) }}"{% else %}href="http://{{ request.host }}/feed"{% end %} title="{{ escape(handler.settings["site_title"]) }} RSS Feed" />
     {% block head %}{% end %}
 </head>
 <body>
     <div id="Header">
-        <div class="blogtitle"><a href="/">Zeray Rice</a></div>
+        <div class="blogtitle"><a href="/">{{ escape(handler.settings["site_title"]) }}</a></div>
     </div>
     <div class="wrapper">
         {% block body %}{% end %}
@@ -20,5 +20,20 @@
         <span class="eof">-EOF-</span>
         <span class="version">Powered by <a href="https://github.com/fanzeyi/angemon">Angemon</a>.</span>
     </div>
+{% if handler.settings["google_analytics"] %}
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{ escape(handler.settings["google_analytics"]) }}']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+{% end %}
 </body>
 </html>
