@@ -47,6 +47,7 @@ class Application(tornado.web.Application):
             'cookie_secret' : '3295bfab668c4ad48dad43f890402905',
             'google_analytics' : site_config["google_analytics"], 
             'feed_url' : site_config["feed_url"], 
+            'disqus_id' : site_config["disqus_id"], 
         }
         tornado.web.Application.__init__(self, handlers, **settings)
         self.session = ConnectDB()
