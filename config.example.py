@@ -3,6 +3,7 @@
 site_config = {
     'site_title' : 'Angemon', 
     'google_analytics' : '', 
+    'disqus_id' : '', 
     'feed_url' : '', 
 }
 
