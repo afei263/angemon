@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from markdown import markdown
+import datetime
 
 import tornado.web
+from markdown import markdown
+from sqlalchemy import desc
 
 from base import BaseHandler
+from models import Entry
 
 class ComposeHandler(BaseHandler):
     @tornado.web.authenticated
@@ -17,54 +20,64 @@ class ComposeHandler(BaseHandler):
         if not content:
             self.render('newentry.html', title = title, content = content, error = 1)
             return
-        self.db.execute("INSERT INTO Entry(Title, Content, Author_id, PublishTime) \
-                         VALUES (%s, %s, %s, UTC_TIMESTAMP())", \
-                         title, content, self.current_user.id)
+        entry = Entry()
+        entry.Title = title
+        entry.Content = content
+        entry.Markdown = markdown(content)
+        entry.Author_id = self.current_user.id
+        entry.PublishTime = datetime.datetime.now()
+        entry.UpdateTime = datetime.datetime.now()
+        self.session.add(entry)
+        self.session.commit()
         self.redirect("/backstage")
 
 
 class EntryHandler(BaseHandler):
     def get(self, eid):
-        entry = self.db.get("SELECT * FROM Entry WHERE id = %s", eid)
+        entry = self.session.query(Entry).get(eid)
         if not entry:
             raise tornado.web.HTTPError(404)
-        author = self.db.get("SELECT * FROM User WHERE id = %s", entry.Author_id)
-        self.render("entry.html", entry = entry, content = markdown(entry.Content), author = author)
+        self.render("entry.html", entry = entry, content = markdown(entry.Content))
 
 class EditEntryHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self, eid):
-        entry = self.db.get("SELECT * FROM Entry WHERE id = %s", eid)
+        entry = self.session.query(Entry).get(eid)
         if not entry:
             raise tornado.web.HTTPError(404)
         self.render("edit.html", entry = entry)
     @tornado.web.authenticated
     def post(self, eid):
-        entry = self.db.get("SELECT * FROM Entry WHERE id = %s", eid)
+        entry = self.session.query(Entry).get(eid)
         if not entry:
             raise tornado.web.HTTPError(404)
         title = self.get_argument('title', default = "No Title")
         content = self.get_argument('content', default = None)
-        self.db.execute("UPDATE Entry SET Title = %s, Content = %s, PublishTime = UTC_TIMESTAMP() WHERE id = %s", \
-                        title, content, eid)
-        self.redirect("/entry/" + str(eid) + "/edit")
+        entry.Title = title
+        entry.Content = content
+        entry.Markdown = markdown(content)
+        entry.UpdateTime = datetime.datetime.now()
+        self.redirect("/entry/" + str(eid))
 
 class RemoveEntryHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self, eid):
-        entry = self.db.get("SELECT * FROM Entry WHERE id = %s", eid)
+        entry = self.session.query(Entry).get(eid)
         if not entry:
             raise tornado.web.HTTPError(404)
         self.render("remove.html", entry = entry)
     @tornado.web.authenticated
     def post(self, eid):
-        self.db.execute("DELETE FROM Entry WHERE id = %s", eid)
+        entry = self.session.query(Entry).get(eid)
+        self.session.delete(entry)
+        self.session.commit()
         self.redirect("/")
 
 class FeedHandler(BaseHandler):
     def get(self):
-        entries = self.db.query("SELECT * FROM Entry ORDER BY PublishTime DESC LIMIT 10")
-        self.set_header("Content-Type", "application/atom+xml")
-        for entry in entries:
-            entry.Markdown = markdown(entry.Content)
+        entries = self.session.query(Entry) \
+                              .order_by(desc('Entry.id')) \
+                              .limit(10) \
+                              .all()
+        self.set_header("Content-Type", "application/atom+xml; charset=utf-8")
         self.render("feed.xml", entries = entries)

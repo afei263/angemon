@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from MySQLdb import ProgrammingError
-from markdown import markdown
+from sqlalchemy import desc
 
 from base import BaseHandler
+from models import Entry
 
 class IndexHandler(BaseHandler):
     def get(self):
-        try:
-            entries = self.db.query("SELECT * FROM Entry ORDER BY PublishTime DESC LIMIT 5")
-        except ProgrammingError:
-            self.redirect("/install")
-            return
-        for entry in entries:
-            entry.Markdown = markdown(entry.Content)
+        entries = self.session.query(Entry) \
+                              .order_by(desc(Entry.PublishTime)) \
+                              .limit(5) \
+                              .all()
         self.render('index.html', entries = entries)

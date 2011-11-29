@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="title"><h1>{{ entry.Title }}</h1></div>
-<div class="author">by {{ author.Nickname }} on {{ entry.PublishTime }}. {% if current_user %}<a href="/entry/{{ entry.id }}/edit">Edit</a> | <a href="/entry/{{ entry.id }}/remove">Delete</a>{% end %}</div>
+<div class="author">by {{ entry.Author.Nickname }} on {{ entry.PublishTime }}. {% if current_user %}<a href="/entry/{{ entry.id }}/edit">Edit</a> | <a href="/entry/{{ entry.id }}/remove">Delete</a>{% end %}</div>
 <div class="content" id="entry-{{ entry.id }}-content" >
     {% raw content %}
 </div>

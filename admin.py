@@ -3,6 +3,7 @@
 import hashlib
 
 import tornado.web
+from sqlalchemy import desc
 
 from db import ConnectDB
 from base import BaseHandler
@@ -67,5 +68,5 @@ class SignoutHandler(BaseHandler):
 class BackstageHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        entries = self.session.query(Entry).all()
+        entries = self.session.query(Entry).order_by(desc('Entry.id')).all()
         self.render('backstage.html', entries = entries)
