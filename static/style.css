@@ -211,12 +211,7 @@ ul.entry-list li .content {
 }
 
 #Footer span.eof {
-    position: absolute;
-    left: 410px;
+    position: relative;
+    left: 320px;
     font: 14px 'Bitstream Vera Sans Mono','Courier',monospace;
-}
-
-#Footer span.version{
-    display: inline;
-    float: right;
 }
