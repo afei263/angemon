@@ -202,3 +202,21 @@ ul.entry-list li .content {
 #compose_title {
     border-bottom: 1px dashed #BA674E;
 }
+
+#Footer {
+    width: 700px;
+    margin: 0 auto;
+    font-size: 9px;
+    margin-bottom: 40px;
+}
+
+#Footer span.eof {
+    position: absolute;
+    left: 410px;
+    font: 14px 'Bitstream Vera Sans Mono','Courier',monospace;
+}
+
+#Footer span.version{
+    display: inline;
+    float: right;
+}
