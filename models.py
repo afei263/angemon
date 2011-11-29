@@ -24,6 +24,7 @@ Entry_Table = Table('Entry', metadata,
                     Column('Author_id', Integer, ForeignKey('User.id')), 
                     Column('PublishTime', DATETIME), 
                     Column('UpdateTime', DATETIME), 
+                    Column('NoFeed', Boolean, default = False), 
                     mysql_charset = 'utf8')
 
 User_Table = Table('User', metadata, 
@@ -51,6 +52,7 @@ class Entry(Base):
     Author = relation('User', lazy = 'immediate', order_by = 'User.id')
     PublishTime = Column(DATETIME)
     UpdateTime = Column(DATETIME)
+    NoFeed = Column(Boolean)
 
 class User(Base):
     __tablename__ = 'User'
