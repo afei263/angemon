@@ -187,7 +187,33 @@ ul.entry-list li .content {
 }
 
 .form_textarea ::-webkit-scrollbar {
-    width: 0;
+    width:9px;
+    height:9px;
+}
+
+.form_textarea ::-webkit-scrollbar-button:start:decrement, #doc ::-webkit-scrollbar-button:end:increment {
+    display:block;
+    height:0;
+    background-color:transparent;
+}
+
+.form_textarea ::-webkit-scrollbar-track-piece {
+    background-color:#FAFAFA;
+    -webkit-border-radius:0;
+    -webkit-border-bottom-right-radius:8px;
+    -webkit-border-bottom-left-radius:8px;
+} 
+
+.form_textarea ::-webkit-scrollbar-thumb:vertical {
+    height:50px;
+    background-color:#999;
+    -webkit-border-radius:8px;
+}
+
+.form_textarea ::-webkit-scrollbar-thumb:horizontal {
+    width:50px;
+    background-color:#999;
+    -webkit-border-radius:8px;
 }
 
 .form_line .button{
