@@ -72,7 +72,7 @@ h6 {
     border: none;
 }
 .content pre {
-    border-left: 1px solid #3E606F;
+    border-left: 3px solid #3E606F;
     margin-left: 2em; 
     padding-left: 0.5em;
 }
@@ -108,6 +108,12 @@ a:hover {
     border: 1px solid #b7af9c;
     padding: 0 .2em!important;
 }
+
+.content pre code {
+    background-color: transparent;
+    border: none;
+}
+
 pre, code {
     font: 12px 'Bitstream Vera Sans Mono','Courier',monospace;
 }
