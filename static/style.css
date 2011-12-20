@@ -11,12 +11,12 @@
 
 body {
     color: #45372B;
-    background-color: #FFF5D9;
+    background-color: #FFFDF6;
     font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", STHeiti !important;
     padding: 1em 2em 1em 2em;
     font-size: 100%;
     line-height: 130%;
-    border-top: #F5EBCF 5px solid;
+    border-top: #EEEFEF 5px solid;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -24,28 +24,33 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.5em;
 }
 h1 {
-    font-size: 2.0em;
+    font-family: Georgia, "Times New Roman", Times, "Hiragino Sans GB", "Hiragino Kaku Gothic Pro", "STXihei", Hei, SimSun, "WenQuanYi Micro Hei", sans-serif;
+    font-size: 1.6em;
     color: #2E0927;
 }
 h2 {
-    font-size: 1.6em; 
+    font-size: 1.3em; 
     color: #D90000;
 }
 h3 {
-    font-size: 1.3em; 
+    font-size: 1.2em; 
     color: #FF8C00;
 }
 h4 {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: #04756F;
 }
 h5 {
-    font-size: 1.1em; 
+    font-size: 1.0em; 
     color: #FF2D00;
 }
 h6 {
     font-size: 1.0em;
     color: #000000;
+}
+
+.content {
+    font-size: 14px;
 }
 .content p, .content pre, .content blockquote, .content table, .content ul, .content ol, .content dl {
     margin-top: 1em; 
@@ -72,7 +77,7 @@ h6 {
     border: none;
 }
 .content pre {
-    border-left: 3px solid #3E606F;
+    border-left: 3px solid #E6E5D9;
     margin-left: 2em; 
     padding-left: 0.5em;
 }
@@ -104,9 +109,8 @@ a:hover {
     text-decoration: underline;
 }
 .content code {
-    background-color: #ede7d6;
-    border: 1px solid #b7af9c;
-    padding: 0 .2em!important;
+    background-color: #FFF5D9;
+    font-size: 14px;
 }
 
 .content pre code {
@@ -115,7 +119,8 @@ a:hover {
 }
 
 pre, code {
-    font: 12px 'Bitstream Vera Sans Mono','Courier',monospace;
+    font-size: 12px;
+    font-family: "FreeMono", "Panic Sans", "Menlo", "DejaVu Sans Mono", "Luxi Mono", "Courier New", 'Courier', monospace !important;
 }
 
 #Header {
@@ -144,10 +149,6 @@ ul.entry-list li{
     margin: 0;
 }
 
-ul.entry-list li .content {
-    margin-left: 0.5em;
-}
-
 .entry-list .title a{
     color: #2E0927;
 }
@@ -158,7 +159,8 @@ ul.entry-list li .content {
 }
 
 .author {
-    font-size: 13px;
+    font-size: 11px;
+    text-align: right;
     color: #AAA;
 }
 
@@ -180,7 +182,7 @@ ul.entry-list li .content {
     border: none;
     height: 30px;
     font-size: 26px;
-    background-color: #FFF5D9;
+    background-color: #FFFDF6;
     width: 100%;
 }
 
@@ -188,7 +190,7 @@ ul.entry-list li .content {
     width: 100%;
     outline: none;
     border: none;
-    background-color: #FFF5D9;
+    background-color: #FFFDF6;
     height: 500px;
 }
 
@@ -231,17 +233,11 @@ ul.entry-list li .content {
     background: #FFF;
 }
 
-.gist { font-size: 11px; font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Luxi Mono", "Courier New", Monaco, "Hiragino Sans GB", STHeiti !important; }
-
 .gist-file {
-    -moz-border-radius: 4px; -webkit-border-radius: 4px;
-    border: 2px solid #999;
-    -moz-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .gist-file .gist-data {
-    -moz-border-radius: 4px 4px 0px 0px; -webkit-border-radius: 4px;
+    padding: 8px;
 }
 
 #compose_title {
@@ -259,4 +255,8 @@ ul.entry-list li .content {
     position: relative;
     left: 320px;
     font: 14px 'Bitstream Vera Sans Mono','Courier',monospace;
+}
+
+#dsq-footer, #dsq-sort-by, .dsq-global-toolbar-left, #dsq-content h3{
+    display: none;
 }
