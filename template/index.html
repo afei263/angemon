@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if entries %}
+{% for entry in entires %}
+<div class="article">
+    <div class="article-title">
+        <h1><a href="/{{ entry.slug }}/">{{ entry.title }}</a></h1>
+    </div>
+    <div class="article-date-meta">
+        <span class="day">15</span>
+        <span class="week">OCT</span>
+    </div>
+    <div class="article-sep"></div>
+    <div class="article-content">
+        {{ entry.markdown }}
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="well">
+    <p>Ooops... Nothing here.</p>
+</div>
+{% endif %}
+{% endblock %}

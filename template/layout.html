@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}/dev/null{% endblock %} - {{ page.settings['site_title'] }}</title>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>    
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+    {% block head %}{% endblock %}
+</head>
+<body>
+<header>
+    <div class="rainbow">
+        <div class="red"></div>
+        <div class="orange"></div>
+        <div class="yellow"></div>
+        <div class="green"></div>
+        <div class="blue"></div>
+        <div class="purple"></div>
+    </div>
+</header>
+<div class="container">
+    <div class="left-col">
+        {% block content %}{% endblock %}
+    </div>
+    <div class="right-col">
+        <div class="logo"><h1>{{ page.settings['firstname'] }}</h1><h2>{{ page.settings['lastname'] }}</h2></div>
+        <ul class="links">
+            <a class="about-btn" href="/about"><li>about</li></a>
+            {% if page.settings['twitter'] %}<a class="twitter-btn" href="https://twitter.com/{{ page.settings['twitter'] }}"><li>twitter</li></a>{% endif %}
+            {% if page.settings['github'] %}<a class="github-btn" href="https://github.com/fanzeyi"><li>github</li></a>{% endif %}
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+
