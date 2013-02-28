@@ -2,7 +2,7 @@
 
 import tornado.web
 
-from models.user import User
+from models.auth import Auth
 
 class BaseHandler(tornado.web.RequestHandler):
     @property
@@ -23,7 +23,11 @@ class BaseHandler(tornado.web.RequestHandler):
         token = self.get_secure_cookie('token')
         if not token:
             return None
-        query = self.db.query(User).filter_by(token = token)
+        query = self.db.query(Auth).filter_by(secret = token)
         if query.count() == 0:
             return None
-        return query.one()
+        auth = query.one()
+        if auth.is_valid():
+            auth.update_time(self.db)
+            return auth.user
+        return None

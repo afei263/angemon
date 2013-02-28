@@ -3,25 +3,22 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{% if entries %}
-{% for entry in entries %}
 <div class="article">
     <div class="article-title">
-        <h1><a href="/{{ entry.slug }}/">{{ entry.title }}</a>{% if entry.draft %}<span class="draft">[draft]</span>{% endif %}</h1>
+        <h1>{{ entry.title }}{% if entry.draft %}<span class="draft">[draft]</span>{% endif %}</h1>
     </div>
     <div class="article-date-meta">
         <span class="day">{{ entry.createTime.day }}</span>
         <span class="week">{{ entry.createTime.strftime("%b") | upper }}</span>
     </div>
+    {% if user %}
+    <div class="article-action">
+        <a href="/backstage/compose?id={{ entry.id }}">edit</a>
+    </div>
+    {% endif %}
     <div class="article-sep"></div>
     <div class="article-content">
         {{ entry.markdown }}
     </div>
 </div>
-{% endfor %}
-{% else %}
-<div class="well">
-    <p>Ooops... Nothing here.</p>
-</div>
-{% endif %}
 {% endblock %}

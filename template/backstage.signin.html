@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in - {{ page.settings['site_title'] }}</title>
+    <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>    
+    <style type="text/css">
+@keyframes error {
+    0% {background-color: transparent; }
+    50% {background-color: #E47575; }
+    100% {background-color: transparent; }
+}
+@-webkit-keyframes error {
+    0% {background-color: transparent; }
+    50% {background-color: #E47575; }
+    100% {background-color: transparent; }
+}
+@-moz-keyframes error {
+    0% {background-color: transparent; }
+    50% {background-color: #E47575; }
+    100% {background-color: transparent; }
+}
+@-o-keyframes error {
+    0% {background-color: transparent; }
+    50% {background-color: #E47575; }
+    100% {background-color: transparent; }
+}
+.form-line-input.line-hover {
+    background-color: #EFEFEF; 
+}
+html {
+    background-color: #E9E9E9;
+    font-family: 'Monda', sans-serif;
+}
+
+html, input, button {
+    -webkit-font-smoothing: antialiased; 
+}
+
+input, button {
+    font-family: 'Monda', sans-serif;
+}
+
+form {
+    position: absolute; 
+    top: 50%; 
+    left: 0; 
+    width: 100%; 
+    height: 400px; 
+    margin-top: -240px; 
+}
+
+.error {
+    animation: error .3s linear 2;
+    -webkit-animation: error .3s linear 2;
+    -moz-animation: error .3s linear 2;
+    -o-animation: error .3s linear 2;
+}
+
+.form-line {
+    line-height: 60px; 
+    height: 60px; 
+    max-height: 60px; 
+    min-height: 60px; 
+    transition: background-color .2s linear; 
+    -webkit-transition: background-color .2s linear; 
+    -moz-transition: background-color .2s linear; 
+}
+
+.form-line legend {
+    font-size: 28px; 
+    padding: 0; 
+}
+
+.form-line .line-container {
+    width: 400px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+.form-line input {
+    outline: none; 
+    border: none; 
+    height: 100%; 
+    width: 100%; 
+    font-size: 22px; 
+    background-color: transparent; 
+    color: #333; 
+}
+
+button, .btn {
+    transition: background-color .2s linear; 
+    -webkit-transition: background-color .2s linear; 
+    -moz-transition: background-color .2s linear; 
+    display: block; 
+    border: none; 
+    outline: none; 
+    margin: 0; 
+    padding: 0 20px; 
+    text-align: center; 
+    background-color: #101010; 
+    text-decoration: none; 
+    font-size: 22px; 
+    color: white; 
+    cursor: pointer; 
+}
+
+.clearfix {
+    clear: both; 
+    *zoom: 1; 
+}
+
+.btn-green {
+    background-color: #54BD23;  
+}
+
+.btn-green:hover {
+    background-color: #53C71D;
+}
+
+.form-line.active {
+    background-color: #72A4EE;
+}
+
+.form-line.active input {
+    color: white; 
+}
+
+.form-line.active input::-webkit-input-placeholder {
+    color: #E4F0FA; 
+}
+
+.form-line.active input:-moz-placeholder {
+    color: #E4F0FA; 
+}
+
+.form-line.error input {
+    color: white; 
+}
+
+.form-line.error input::-webkit-input-placeholder {
+    color: #E4F0FA; 
+}
+
+.form-line.error input:-moz-placeholder {
+    color: #E4F0FA; 
+}
+
+.form-line-post button {
+    width: 100%; 
+    height: 60px; 
+    float: left; 
+    transition: width .2s linear; 
+    -webkit-transition: width .2s linear; 
+    -moz-transition: width .2s linear;
+}
+
+.sns-login {
+    float: left; 
+    width: 60px; 
+    background-color: transparent; 
+    padding: 0; 
+    position: relative; 
+    overflow: hidden; 
+    height: 60px; 
+}
+
+.sns-login .btn-google {
+    width: 260px; 
+    height: 60px; 
+    background-color: #4385F4; 
+    background-image: url('/static/img/signin-google.png'); 
+    background-repeat: no-repeat; 
+}
+
+.google-hover .sns-login {
+    height: 240px; 
+}
+
+.google-hover button {
+}
+.sns-login .other-sns {
+}
+.sns-login .other-sns a {
+    width: 60px; 
+    height: 60px; 
+    opacity: 0; 
+}
+.google-hover .other-sns a {
+    opacity: 1;
+    transition: opacity .2s linear; 
+    -webkit-transition: opacity .2s linear; 
+    -moz-transition: opacity .2s linear;
+}
+.sns-login .other-sns .btn-renren {
+    background-color: #005EAC; 
+    background-image: url('/static/img/signin-renren.png'); 
+    transition-delay: .2s; 
+    -webkit-transition-delay: .2s; 
+    -moz-transition-delay: .2s; 
+}
+.sns-login .other-sns .btn-weibo {
+    background-color: #E32529; 
+    background-image: url('/static/img/signin-weibo.png'); 
+}
+.sns-login .other-sns .btn-tencent {
+    background-color: #E32529; 
+    background-image: url('/static/img/signin-tencent.png'); 
+    transition-delay: .4s; 
+    -webkit-transition-delay: .4s; 
+    -moz-transition-delay: .4s; 
+}
+.google-hover .other-sns {
+    display: block; 
+}
+    </style>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+    var input = $("input"); 
+    var form_line = $(".form-line"); 
+    input.focus(function() {
+        $(this).parents(".form-line").addClass("active"); 
+    }); 
+    input.focusout(function() {
+        form_line.removeClass("active"); 
+    }); 
+    input.hover(function() {
+        $(this).parents(".form-line").addClass("line-hover"); 
+    }, function() {
+        form_line.removeClass("line-hover");
+    }); 
+    $(".sns-login").hover(function() {
+        $(this).parents(".form-line").addClass("google-hover"); 
+    }, function() {
+        form_line.removeClass("google-hover"); 
+    }); 
+    form_line.on('webkitAnimationEnd', function() {
+        form_line.removeClass("error"); 
+    }); 
+    form_line.on('animationend', function() {
+        form_line.removeClass("error"); 
+    }); 
+    $("form").submit(function() {
+        var username = $("#username-input").val(); 
+        var password = $("#password-input").val(); 
+        if(!username) {
+            $("#username-input").parents(".form-line").addClass("error"); 
+            return false; 
+        }
+        if(!password) {
+            $("#password-input").parents(".form-line").addClass("error"); 
+            return false; 
+        }
+    }); 
+}); 
+    </script>
+</head>
+<body>
+    <form method="POST" action="">
+        {{ page.xsrf_form_html() }}
+        <div class="form-line">
+            <div class="line-container">
+                <legend>Sign in</legend>
+            </div>
+        </div>
+        <div class="form-line form-line-input">
+            <div class="line-container">
+                <input type="TEXT" name="username" placeholder="Username" id="username-input"/>
+            </div>
+        </div>
+        <div class="form-line form-line-input">
+            <div class="line-container">
+                <input type="PASSWORD" name="password" placeholder="Password" id="password-input"/>
+            </div>
+        </div>
+        <div class="form-line form-line-post">
+            <div class="line-container">
+                <button type="submit" class="btn btn-green">Sign in</button>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </form>
+</body>
+</body>

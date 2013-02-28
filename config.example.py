@@ -9,4 +9,6 @@ site_config = {
     'lastname'  : '', 
     'twitter'   : '', 
     'github'    : '', 
+    'username'  : '', 
+    'password'  : '', 
 }

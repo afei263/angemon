@@ -3,6 +3,7 @@
 import os
 import sys
 import logging
+import hashlib
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 from sqlalchemy import create_engine
@@ -17,6 +18,7 @@ from tornado.options import define
 from tornado.options import options
 
 import models
+from models.user import User
 from route import route
 from config import site_config
 
@@ -45,6 +47,11 @@ class Application(tornado.web.Application):
         engine = create_engine(self.settings['db_path'], convert_unicode = True)
         models.init_db(engine)
         self.db = scoped_session(sessionmaker(bind = engine))
+        if self.db.query(User).count() == 0:
+            user = User(site_config["username"].lower(), hashlib.sha1(site_config["password"]).hexdigest())
+            self.db.add(user)
+            self.db.commit()
+            self.db.close()
 
 if __name__ == '__main__':
     try:

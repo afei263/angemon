@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Compose - {{ page.settings['site_title'] }}</title>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>    
+    <script src="/static/js/expanding.js" type="text/javascript"></script>
+<style type="text/css">
+body, input, button, textarea {
+    font-family: 'PT Sans', "Helvetica Neue",'Arial','Verdana','Lantinghei TC','Hiragino Kaku Gothic ProN','Heiti TC','MS Mincho','MingLiU',sans-serif;
+    color: #666; 
+    background-color: #EFEFEF; 
+    -webkit-font-smoothing: antialiased; 
+    font-size: 14px;
+}
+
+* {
+    margin: 0; 
+    padding: 0; 
+}
+
+.container {
+    width: 600px; 
+    margin: 0 auto; 
+    margin-top: 60px; 
+}
+
+.compose input, .compose textarea {
+    border: none; 
+    outline: none; 
+}
+
+.compose input.title {
+    width: 100%; 
+    line-height: 40px; 
+    font-size: 36px; 
+    padding-bottom: 10px; 
+    border-bottom: 3px solid orange; 
+}
+
+.compose textarea {
+  outline: none;
+  border: none;
+  width: 600px;
+  resize: none;
+  background: none;
+  font-size: 23px;
+  line-height: 30px;
+  color: #3f3f3f;
+  min-height: 200px;
+  position: absolute;
+  margin-top: 10px; 
+  margin-bottom: 100px; 
+}
+
+::-webkit-scrollbar {
+  background: #f2f2f2;
+  width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    display: none;
+}
+ 
+::-webkit-scrollbar-thumb {
+    width: 8px;
+    border-radius: 1px;
+    background: rgba(0,0,0,.2)
+}
+
+/* Body Scrollbar */
+
+.body::-webkit-scrollbar.body, .page-title::-webkit-scrollbar.page-title {
+   display: none;
+}
+ 
+::-webkit-scrollbar-track.body, .page-title::-webkit-track.page-title {
+    display: none;
+}
+ 
+.body::-webkit-scrollbar-thumb, .page-title::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+.form-action-container {
+    position: fixed; 
+    bottom: 0px; 
+    width: 100%; 
+    background-color: #333; 
+    height: 70px; 
+    left: 0; 
+}
+
+.form-action {
+    width: 600px; 
+    margin: 0 auto; 
+    text-align: right;
+    line-height: 70px; 
+}
+
+.form-action button {
+    border: none; 
+    outline: none; 
+    background-color: #222; 
+    color: #EEE; 
+    font-size: 18px; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+}
+
+.r {
+    float: right; 
+}
+
+.l {
+    float: left; 
+}
+
+.form-action label {
+    font-size: 17px; 
+    color: #EEE; 
+    padding: 10px; 
+    line-height: 30px; 
+}
+
+.form-action input[type="TEXT"] {
+    background-color: transparent; 
+    line-height: 30px; 
+    font-size: 18px; 
+    color: #EEE; 
+    border-bottom: dotted 2px #AAA; 
+}
+
+.submit-btn:hover {
+    background-color: #252525; 
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+    <form method="POST" action="" class="compose">
+        {{ page.xsrf_form_html() }}
+        <input type="TEXT" name="title" class="title" placeholder="Enter title here." {% if entry %}value="{{ entry.title }}"{% endif %}/>
+        <textarea name="content" placeholder="just type here." class="expanding">{% if entry %}{{ entry.content }}{% endif %}</textarea>
+        <div class="form-action-container">
+            <div class="form-action">
+                <div class="l">
+                    <input type="TEXT" name="slug" placeholder="slug" class="slug" {% if entry %}value="{{ entry.slug }}"{% endif %}/>
+                </div>
+                <div class="r">
+                    <input type="CHECKBOX" name="draft" {% if entry and entry.draft %}checked{% endif %} /><label for="draft">draft</label>
+                    <button type="submit" class="submit-btn">Post</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+$("textarea").expandingTextarea(); 
+</script>
+</body>
+</html>

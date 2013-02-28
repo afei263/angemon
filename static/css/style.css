@@ -118,6 +118,14 @@ html, body {
     background-color: #0099cc; 
 }
 
+.compose-btn li {
+    background-image: url('/static/img/compose.svg'); 
+}
+
+.compose-btn:hover {
+    background-color: #81D174; 
+}
+
 .links {
     margin-top: 20px; 
 }
@@ -179,4 +187,27 @@ html, body {
     border: 1px solid #DDD; 
     text-align: center;
     padding: 20px; 
+}
+
+.draft {
+    font-size: 18px; 
+    padding: 0 10px; 
+    color: #999; 
+}
+
+.article-action {
+    position: absolute; 
+    width: 55px; 
+    top: 85px; 
+    left: -80px; 
+    text-align: center; 
+}
+
+.article-action a {
+    text-decoration: none; 
+    color: #999; 
+}
+
+.article-action a:hover {
+    text-decoration: underline; 
 }
