@@ -2,6 +2,8 @@
 
 import logging
 import hashlib
+import datetime
+import markdown
 
 import tornado.web
 
@@ -40,7 +42,7 @@ class SigninHandler(BaseHandler, UserHelper):
 class ComposeHandler(BaseHandler, EntryHelper):
     @tornado.web.authenticated
     def get(self):
-        pid = self.get_argument("pid", None)
+        pid = self.get_argument("id", None)
         entry = None
         if pid:
             try:
@@ -49,10 +51,17 @@ class ComposeHandler(BaseHandler, EntryHelper):
                 pid = None
         if pid:
             entry = self.select_entry_by_id(pid)
-        logging.info(entry)
-        self.render("compose.html")
+        self.render("compose.html", entry = entry)
     @tornado.web.authenticated
     def post(self):
+        pid = self.get_argument("id", None)
+        if pid:
+            try:
+                pid = int(pid)
+            except ValueError:
+                pid = None
+        if pid:
+            entry = self.select_entry_by_id(pid)
         title = self.get_argument("title", "")
         content = self.get_argument("content", "")
         slug = self.get_argument("slug", "")
@@ -71,7 +80,15 @@ class ComposeHandler(BaseHandler, EntryHelper):
                                                   "slug" : slug, \
                                                   "draft" : draft})
             return
-        entry = Entry(title, content, self.current_user, slug, draft)
+        if entry:
+            entry.title = title
+            entry.content = content
+            entry.markdown = markdown.markdown(content)
+            entry.slug = slug
+            entry.draft = draft
+            entry.updateTime = datetime.datetime.now()
+        else:
+            entry = Entry(title, content, self.current_user, slug, draft)
         self.db.add(entry)
         self.db.commit()
         self.redirect('/%s/' % entry.slug)

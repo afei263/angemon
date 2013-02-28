@@ -46,10 +46,20 @@ html, body {
     background-color: rgb(106, 78, 166); 
 }
 
-.logo h1, .logo h2 {
+.logo a {
+    text-decoration: none; 
+}
+
+.logo a:hover {
+    text-decoration: underline; 
+}
+
+.logo a h1, .logo a h2 {
     font-family: 'Josefin Slab', serif;
     font-weight: normal; 
-    font-size: 50px; 
+    font-size: 50px !important; 
+    color: #333; 
+    text-decoration: none; 
 }
 
 .container {

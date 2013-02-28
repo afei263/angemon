@@ -24,9 +24,9 @@
         {% block content %}{% endblock %}
     </div>
     <div class="right-col">
-        <div class="logo"><h1>{{ page.settings['firstname'] }}</h1><h2>{{ page.settings['lastname'] }}</h2></div>
+        <div class="logo"><a href="/"><h1>{{ page.settings['firstname'] }}</h1><h2>{{ page.settings['lastname'] }}</h2></a></div>
         <ul class="links">
-            {% if user %}<a class="compose-btn" href="/backstage/compose"><li>write</li></a>{% endif %}
+            {% if user %}<a class="compose-btn" href="/backstage/compose"><li>new</li></a>{% endif %}
             <a class="about-btn" href="/about"><li>about</li></a>
             {% if page.settings['twitter'] %}<a class="twitter-btn" href="https://twitter.com/{{ page.settings['twitter'] }}"><li>twitter</li></a>{% endif %}
             {% if page.settings['github'] %}<a class="github-btn" href="https://github.com/fanzeyi"><li>github</li></a>{% endif %}
