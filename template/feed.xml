@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  {% set date_format = "%Y-%m-%dT%H:%M:%SZ" %}
+  <title>{{ page.settings["site_title"] }}</title>
+  {% if entries | length > 0 %}
+    <updated>{{ max_update.strftime(date_format) }}</updated>
+  {% else %}
+    <updated>{{ datetime.datetime.utcnow().strftime(date_format) }}</updated>
+  {% endif %}
+  <id>http://{{ request.host }}/</id>
+  <link rel="alternate" href="http://{{ request.host }}/" title="{{ page.settings["site_title"] }}" type="text/html"/>
+  <link rel="self" href="{{ request.full_url() }}" title="{{ page.settings["site_title"] }}" type="application/atom+xml"/>
+  <author><name>{{ page.settings["site_title"] }}</name></author>
+  {% for entry in entries %}
+    <entry>
+      <id>http://{{ request.host }}/{{ entry.slug }}/</id>
+      <title type="text">{{ entry.title }}</title>
+      <link href="http://{{ request.host }}/{{ entry.slug }}/" rel="alternate" type="text/html"/>
+      <updated>{{ entry.updateTime.strftime(date_format) }}</updated>
+      <published>{{ entry.createTime.strftime(date_format) }}</published>
+      <content type="xhtml" xml:base="http://{{ request.host }}/">
+          <div xmlns="http://www.w3.org/1999/xhtml">{{ entry.markdown }}</div>
+      </content>
+    </entry>
+  {% endfor %}
+</feed>
